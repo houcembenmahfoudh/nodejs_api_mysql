@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+ <body>
+  PAGE
+  <form action="/addPerson" method="POST">
+  First name:<input type="text" name="name"><br>
+  Last name:<input type="text" name="lastName"><br>
+  Age:<input type="number" name="age"><br>
+ <button type="submit">Add</button>
+</form>
+<div id="root"></div>
+<button type="submit" onclick="UserAction()">Search</button>
+
+
+<script type="text/javascript">
+function UserAction(){
+   var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("root").innerHTML =
+          this.responseText;
+      }
+    };
+    xhr.open("GET", "http://localhost:3000/allPersons", true);
+    xhr.send();
+}
+</script>
+
+ </body>
+</html>
