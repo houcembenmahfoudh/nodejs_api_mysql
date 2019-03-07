@@ -26,14 +26,14 @@ app.get('/allPersons', function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); // allows react access
 	con.query('SELECT * FROM person', (err,results) => {
   		if(err) throw err;
-			res.end(JSON.stringify(results));
+			res.send(results);
 	});
 })
 
-app.get('/person/:id', function (req, res) {
-   con.query('select * from person where id=?', [req.params.id], function (error, results, fields) {
+app.get('/person', function (req, res) {
+   con.query('select * from person where id=?', [req.query.id], function (error, results, fields) {
 	if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  res.send(results);
 	});
 });
 
@@ -41,20 +41,19 @@ app.post('/addPerson', function (req, res) {
    var postData  = req.body;
    con.query('INSERT INTO person SET ?', postData, function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  res.send(results);
 	});
 });
 
 app.post('/updatePerson', function (req, res) {
-   con.query('UPDATE `person` SET `name`=?,`lastName`=?,`age`=? where `id`=?', [req.body.name,req.body.lastName, req.body.age, req.body.id], function (error, results, fields) {
+   con.query('UPDATE person SET name=?,lastName=?,age=? where id=?', [req.body.name,req.body.lastName, req.body.age, req.body.id], function (error, results, fields) {
 	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+	  res.send(results);
 	});
 });
 
 app.delete('/deletePerson', function (req, res) {
-   console.log(req.body);
-   con.query('DELETE FROM `person` WHERE `id`=?', [req.body.id], function (error, results, fields) {
+   con.query('DELETE FROM person WHERE id=?', [req.body.id], function (error, results, fields) {
 	  if (error) throw error;
 	  res.end('Record has been deleted!');
 	});
