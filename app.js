@@ -4,11 +4,13 @@ const app = express()
 const bodyParser = require('body-parser')
 
 let con = mysql.createConnection({
-  host: "",
-  user: "",
-  password: "",
-  database: ""
+  host: "10.194.69.15",
+  user: "A11",
+  password: "gCIIOrBfPprhqUDs",
+  database: "A11"
 });
+
+app.use(express.static("css"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
