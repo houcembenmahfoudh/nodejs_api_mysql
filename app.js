@@ -4,10 +4,10 @@ const app = express()
 const bodyParser = require('body-parser')
 
 let con = mysql.createConnection({
-  host: "10.194.69.15",
-  user: "A11",
-  password: "gCIIOrBfPprhqUDs",
-  database: "A11"
+  host: "",
+  user: "",
+  password: "",
+  database: ""
 });
 
 app.use(express.static("css"));
