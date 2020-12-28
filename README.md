@@ -7,9 +7,11 @@ npm install
 npm start
 
 ##Update mysql credentials 
+```javascript
 let con = mysql.createConnection({
   host: "",
   user: "",
   password: "",
   database: ""
 });
+```
